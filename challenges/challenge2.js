@@ -35,6 +35,8 @@
   * Asynchronously returns a greeting for a specified name.
   * @param name The name of the person to greet.
   */
+
+//
 function greet(name) {
     return new Promise(function(resolve, reject) {
       setTimeout(function() {
