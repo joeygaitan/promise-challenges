@@ -36,7 +36,10 @@
   * @param name The name of the person to greet.
   */
 
-//
+// 1. It will print both return true conditions from the if statements.
+// 2. It goes to the catch statement after the first one
+// 3. you only have to change the value of the second name
+// 4. spacer function that returns a promise spacer.
 function greet(name) {
     return new Promise(function(resolve, reject) {
       setTimeout(function() {
@@ -65,8 +68,21 @@ function uppercaser(str) {
     });
 }
 
+function spacer(str) {
+  return new Promise((resolve, reject) =>{
+    setTimeout(()=>{
+        if (typeof str === 'string') {
+          resolve(str.split('').join(' '))
+        } else {
+          reject("not type string :/")
+        }
+    },2000)
+  })
+}
+
 name = 'Ducky'
-my_str = 'Make School is Awesome!!!'
+my_str = 'stuff'
+str = 'hello'
 
 greet(name)
     .then((greetResult) => {
@@ -75,6 +91,9 @@ greet(name)
     })
     .then((uppercaserResult) => {
         console.log(uppercaserResult)
+        return spacer(str)
+    }).then((stringResult)=>{
+      console.log(stringResult)
     }).catch((err) => {
         console.log('Received an error!')
         console.log(err);
