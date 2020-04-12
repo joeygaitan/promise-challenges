@@ -28,6 +28,10 @@
  *******************************************************************************
  */
 
+// 1. It returns a uppercase string promise :). it should return a string
+// 2. it returns a promise pending :()
+// 3. it returns the desired return. It uses the promise way. wow
+// 4. got it working
 
  /**
   * Asynchronously returns a greeting for a specified name.
@@ -61,6 +65,18 @@ function uppercaser(str) {
     });
 }
 
+function spacer(str) {
+  return new Promise((resolve, reject) =>{
+    setTimeout(()=>{
+        if (typeof str === 'string') {
+          resolve(str.split('').join(' '))
+        } else {
+          reject("not type string :/")
+        }
+    },1000)
+  })
+}
+
 async function greetAndUppercase(name) {
     greeting = await greet(name)
     uppercasedGreeting = await uppercaser(greeting)
@@ -68,14 +84,18 @@ async function greetAndUppercase(name) {
 }
 
 /* Uncomment me! #1 */
-// result = greetAndUppercase('Ducky')
-// console.log(result)
+result = greetAndUppercase('Ducky')
+console.log(result)
 
 /* Uncomment me! #2 */
-// greetAndUppercase('Ducky')
-//     .then(function(result) {
-//         console.log(result)
-//     })
-//     .catch(function(err) {
-//         console.log(err)
-//     })
+greetAndUppercase('Ducky')
+    .then(function(result) {
+        console.log(result)
+        return spacer(result)
+    })
+    .then((resultValue)=> {
+      console.log(resultValue)
+    })
+    .catch(function(err) {
+        console.log(err)
+    })
